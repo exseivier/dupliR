@@ -1,0 +1,14 @@
+Package: dupliR
+Type: Package
+Title: Calculates differences in expression level and Pearson
+        correlation between duplicates/homoeologs along a set of
+        libraries (experiments)
+Version: 1.0
+Date: 2017-12-04
+Author: Javier Montalvo-Arredondo [aut, cre]
+Maintainer: Javier Montalvo <javier.montalvo@cinvestav.mx>
+Description: More about what it does (maybe more than one line)
+License: GNU-GPL3
+Depends: methods
+NeedsCompilation: no
+Packaged: 2017-12-05 15:57:53 UTC; javier

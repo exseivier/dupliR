@@ -1,0 +1,14 @@
+exportPattern("^[[:alpha:]]+")
+exportMethods(
+    "DET",
+    "calCor",
+    "calDif",
+    "plotCor",
+    "plotDif",
+    "plotWTPV" 
+)
+exportClasses(
+    "ExpMet",
+     "pair",
+     "pairList" 
+)
