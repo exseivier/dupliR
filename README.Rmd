@@ -5,11 +5,20 @@ dupliR
 
 This package contains S4 objects to separate by duplicates / homoeologs pairs and store a dataset of read counts normalised by gene length.
 
-The class object "pair" has two slots, one for gene name (character) and the another for store a data.frame with the read counts of both duplicates or homoeologs. rownames are the name of each gene, and columnames are the library (SRR) name.
+The class object "pair" has two slots, one for gene name (character) and the another for store a data.frame with the read counts of both duplicates or homoeologs. rownames are the name of each gene, and columnames are the library (SRR) name or treatment name.
 
 The class object "pairList" contains two slots: one slot to store the gene name (require an object "ExpMet"), and the second slot is used to store a list object, so you can append indefinitely number of "pair" objects in this slot.
 
 In addition, this package has also a "ExpMet" object and is used to store all Experiment metadata needed to track the experiment where the libraries come from. Currently, this object has only one slot called ExpName (character).
 
+NOTE: every duplicate or homoeolog pair should be marked exclusively by .L or .S at the end of the gene name, and the common gene name should be the same
+
+example: if the name of the gene is ntf23 the duplicates genes should be named like ntf23.L and the copy ntf23.S
+
 ## Methods
 
+- DET(): creates the duplicates / homoeologs expression table (DET) object
+- calDif(): calculates the difference in expression level (read counts normalised by gene length) between duplicates / homoeologs
+- calCor(): calculates the Pearson correlation of expression level between a pair of genes along treatments (libraries)
+- plotWTPV(): plots the Wilcoxon test p-value
+- plotCor(): plots the Pearson correlation coefficient
