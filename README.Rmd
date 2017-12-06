@@ -1,6 +1,8 @@
 dupliR
 ======
 
+-------
+
 ## Objects
 
 This package contains S4 objects to separate by duplicates / homoeologs pairs and store a dataset of read counts normalised by gene length.
