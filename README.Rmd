@@ -1,7 +1,7 @@
 dupliR
 ======
 
-##Objects
+## Objects
 
 This package contains S4 objects to separate by duplicates / homoeologs pairs and store a dataset of read counts normalised by gene length.
 
@@ -11,5 +11,5 @@ The class object "pairList" contains two slots: one slot to store the gene name 
 
 In addition, this package has also a "ExpMet" object and is used to store all Experiment metadata needed to track the experiment where the libraries come from. Currently, this object has only one slot called ExpName (character).
 
-##Methods
+## Methods
 
