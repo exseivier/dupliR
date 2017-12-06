@@ -57,3 +57,4 @@ Inside R console:
 install.package("/Path/to/tarball_x.x.tar.gz", repos=NULL, lib="/Path/to/dest/lib/")  
 then you can load the package:  
 library(lib.loc="/Path/to/dest/lib/", package="dupliR")  
+then: enjoy!
