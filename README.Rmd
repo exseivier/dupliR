@@ -1,6 +1,12 @@
 dupliR
 ======
 
+This package was implemented to measure the differences in expression and correlation in expression of homoeologs genes along several samples, and to compare these metrics measured in homoeologs regulated as a couple (RAAC genes) by microRNAs and in homoeologs no regulated as a couple (Non-RAAC genes).
+
+This package contains a function that creates a S4 object where the reads counts by gene pair is stored in separate. This function requires a data.frame or matrix with the read counts for every gene normalised by gene length. Rownames should be set with the gene names and column names should be set with the library, samples or treatment names.
+
+Also it is needed to incorporate a character vector with the common names of the pair genes (homoeologs) that were regulated as a couple (RAAC genes) in order to identify them in the dataset.
+
 ---
 
 ## Objects
