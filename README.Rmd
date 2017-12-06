@@ -7,6 +7,8 @@ This package contains a function that creates a S4 object where the reads counts
 
 Also it is needed to incorporate a character vector with the common names of the pair genes (homoeologs) that were regulated as a couple (RAAC genes) in order to identify them in the dataset.
 
+NOTE: it is important to remember that (homoeologs / duplicates) gene names should be named with a common name followed by .L or .S. In example: commonName.L commonName.S (ntf23.L and ntf23.S). The character vector of the common names of the RAAC genes should be without .L or .S (just the commonName).
+
 ---
 
 ## Objects
@@ -30,3 +32,25 @@ example: if the name of the gene is ntf23 the duplicates genes should be named l
 - calCor(): calculates the Pearson correlation of expression level between a pair of genes along treatments (libraries)
 - plotWTPV(): plots the Wilcoxon test p-value
 - plotCor(): plots the Pearson correlation coefficient
+
+## Examples
+In this package there are a naive dataset of normalised read counts and a character vector with the hypothetical common names of RAAC genes. In order to use them you can load them with data()
+
+
+data(exp)
+data(raac)
+
+First of all, we have to create the DET object
+
+det <- DET(exp)
+
+Then we can calculate differences in expression and the Pearson correlation
+
+dif <- calDif(det, raac)
+corr <- calCor(det, raac)
+
+Finally, we can plot the results with the following functions
+plotWTPV(dif)
+plotCor(corr)
+
+These functions will create two files WTPV.pdf and RAAC_correlation.pdf
