@@ -34,23 +34,26 @@ example: if the name of the gene is ntf23 the duplicates genes should be named l
 - plotCor(): plots the Pearson correlation coefficient
 
 ## Examples
-In this package there are a naive dataset of normalised read counts and a character vector with the hypothetical common names of RAAC genes. In order to use them you can load them with data()
-
+In this package there are a naive dataset of normalised read counts and a character vector with the hypothetical common names of RAAC genes. In order to use them you can load them with data().
 
 data(exp)
+
 data(raac)
 
-First of all, we have to create the DET object
+First of all, we have to create the DET object.
 
 det <- DET(exp)
 
-Then we can calculate differences in expression and the Pearson correlation
+Then we can calculate differences in expression and the Pearson correlation.
 
 dif <- calDif(det, raac)
+
 corr <- calCor(det, raac)
 
-Finally, we can plot the results with the following functions
+Finally, we can plot the results with the following functions.
+
 plotWTPV(dif)
+
 plotCor(corr)
 
 These functions will create two files WTPV.pdf and RAAC_correlation.pdf
