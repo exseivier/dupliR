@@ -60,7 +60,7 @@ library(lib.loc="/Path/to/dest/lib/", package="dupliR")
 then: enjoy!
 
 # raacFC_v2.1.R Usage:  
-=======================  
+=======================
 This script uas used to perform the analysis of RAAC homoeologs and No RAAC homoeologs.  
 example:  
 raacFC_v2.1.R "." [srafile2.txt | srafile.txt] fc.RData fc [DEBUG | NONE]  
