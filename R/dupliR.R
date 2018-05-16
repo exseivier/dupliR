@@ -243,3 +243,57 @@ setMethod("plotCor", signature("matrix"),
 		text(1.5, 0.2, paste("W: ", round(w$p.value, 4), sep=""))
 		dev.off()
 })
+
+setGeneric("dist.logfc", function(DGE) standardGeneric("dist.logfc"))
+setMethod("dist.logfc", signature("data.frame"),
+	function(DGE) {
+		H <- list()
+		S <- list()
+		for (name in rownames(DGE)) {
+			name <- gsub("\\.[LSPX]$", "", name)
+			tmp.data <- DGE[gsub("\\.[LSPX]$", "", rownames(DGE)) %in% name,1]
+			if (length(tmp.data) == 2) {
+				H[[name]] <- as.numeric(as.character(dist(tmp.data)))
+			}
+			else {
+				S[[name]] <- tmp.data
+			}
+		}
+		SimpleList(homeologs=unlist(H), singletons=unlist(S))
+})
+
+setGeneric("test.wilcoxon", function(dist_obj, targets, cutoff) standardGeneric("test.wilcoxon"))
+setMethod("test.wilcoxon", signature("SimpleList", "SimpleList", "numeric"),
+	function(dist_obj, targets, cutoff) {
+		WT <- SimpleList()
+		for (name in names(targets)) {
+			if (length(dist_obj[[1]][names(dist_obj[[1]]) %in% targets[[name]]]) > 0) {
+				wt <- wilcox.test(dist_obj[[1]][names(dist_obj[[1]]) %in% targets[[name]]], dist_obj[[1]][!names(dist_obj[[1]]) %in% targets[[name]]], alternative="less")$p.value
+				if (wt <= cutoff) {
+					WT[[name]] <- wt
+				}
+			}
+		}
+		WT <- WT[order(unlist(WT@listData))]
+		WT
+})
+
+setGeneric("create.targetGene.matrix", function(path, total_genes, targs) standardGeneric("create.targetGene.matrix"))
+setMethod("create.targetGene.matrix", signature("character", "character", "SimpleList"),
+	function(path, total_genes, targs) {
+		colnames <- names(targs)
+		total_genes <- gsub("\\|.*$", "", total_genes)
+		mat <- matrix(0, ncol=length(colnames), nrow=length(total_genes))
+		rownames(mat) <- total_genes
+		colnames(mat) <- colnames
+		pb <- txtProgressBar(min=0, max=length(names(targs)), style=3, label="Progress in colnames", char="*")
+		counter <- 0
+		for (name in names(targs)) {
+			counter <- counter + 1
+			setTxtProgressBar(pb, counter, label="Progress in colnames")
+			for(gname in targs[[name]]) {
+				mat[gname, name] <- 1
+			}
+		}
+		mat
+})
